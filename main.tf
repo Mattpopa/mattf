@@ -7,7 +7,7 @@ variable "server_port" {
     default = 9090
     }
 
-resource "aws_instance" "wip-020817" {
+resource "aws_launch_configuration" "wip-020817" {
     ami = "ami-1e339e71"
     instance_type = "t2.micro"
     vpc_security_group_ids = ["${aws_security_group.instance.id}"]
@@ -34,6 +34,17 @@ resource "aws_security_group" "instance" {
     }
     lifecycle {
         create_before_destroy = true
+    }
+}
+
+resource "aws_autoscaling_group" "wip-020817" {
+    launch_configuration = "${aws_launch_configuration.wip-020817.id}"
+    min_size = 2 
+    max_size = 10
+    tag {
+        key = "Name"
+        value = "wip-asg-060817"
+        propagate_at_launch = true
     }
 }
 
