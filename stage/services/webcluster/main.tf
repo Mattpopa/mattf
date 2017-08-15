@@ -2,11 +2,6 @@ provider "aws" {
     region = "eu-central-1"
 }
 
-variable "server_port" {
-    description = "HTTP port"
-    default = 9090
-}
-
 data "aws_availability_zones" "all" {}
 
 resource "aws_launch_configuration" "wip-020817" {
@@ -88,8 +83,3 @@ resource "aws_security_group" "elb" {
 
     }
 }
-
-output "elb_dns_name" {
-    value = "${aws_elb.wip-elb.dns_name}"
-}
-
