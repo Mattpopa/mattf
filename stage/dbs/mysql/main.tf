@@ -9,5 +9,6 @@ resource "aws_db_instance" "wipdb080817" {
     name = "wipdb080817"
     username = "toor"
     password = "${var.dbs_pass}"
+    skip_final_snapshot = true 
 }
 
