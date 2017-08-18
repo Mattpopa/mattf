@@ -1,0 +1,52 @@
+{
+    "version": 3,
+    "terraform_version": "0.9.9",
+    "serial": 15,
+    "lineage": "674acbca-8020-45bf-b05c-6d83c246cb13",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {
+                "s3_bucket_arn": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "arn:aws:s3:::wip-tf-state-080817"
+                }
+            },
+            "resources": {
+                "aws_s3_bucket.terraform_state": {
+                    "type": "aws_s3_bucket",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "wip-tf-state-080817",
+                        "attributes": {
+                            "acceleration_status": "",
+                            "acl": "private",
+                            "arn": "arn:aws:s3:::wip-tf-state-080817",
+                            "bucket": "wip-tf-state-080817",
+                            "bucket_domain_name": "wip-tf-state-080817.s3.amazonaws.com",
+                            "force_destroy": "false",
+                            "hosted_zone_id": "Z21DNDUVLTQW6Q",
+                            "id": "wip-tf-state-080817",
+                            "logging.#": "0",
+                            "region": "eu-central-1",
+                            "request_payer": "BucketOwner",
+                            "tags.%": "0",
+                            "versioning.#": "1",
+                            "versioning.0.enabled": "true",
+                            "versioning.0.mfa_delete": "false",
+                            "website.#": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}

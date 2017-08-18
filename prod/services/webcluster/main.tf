@@ -5,4 +5,3 @@ provider "aws" {
 module "webcluster" {
     source = "../../../modules/services/webcluster"
 }
-

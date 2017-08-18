@@ -1,0 +1,267 @@
+{
+    "version": 3,
+    "terraform_version": "0.9.9",
+    "serial": 22,
+    "lineage": "674acbca-8020-45bf-b05c-6d83c246cb13",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {
+                "elb_dns_name": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "wip-020817-1529799779.eu-central-1.elb.amazonaws.com"
+                }
+            },
+            "resources": {
+                "aws_autoscaling_group.wip-020817": {
+                    "type": "aws_autoscaling_group",
+                    "depends_on": [
+                        "aws_elb.wip-elb",
+                        "aws_launch_configuration.wip-020817",
+                        "data.aws_availability_zones.all"
+                    ],
+                    "primary": {
+                        "id": "tf-asg-0043359e735d22f1ec9d16e1e1",
+                        "attributes": {
+                            "arn": "arn:aws:autoscaling:eu-central-1:499604764704:autoScalingGroup:eee4fe27-efa9-4d06-8a3a-ff793208e700:autoScalingGroupName/tf-asg-0043359e735d22f1ec9d16e1e1",
+                            "availability_zones.#": "3",
+                            "availability_zones.1126047633": "eu-central-1a",
+                            "availability_zones.2903539389": "eu-central-1c",
+                            "availability_zones.3658960427": "eu-central-1b",
+                            "default_cooldown": "300",
+                            "desired_capacity": "2",
+                            "force_delete": "false",
+                            "health_check_grace_period": "300",
+                            "health_check_type": "ELB",
+                            "id": "tf-asg-0043359e735d22f1ec9d16e1e1",
+                            "launch_configuration": "terraform-0043359e735d22f1ec9d16e1e0",
+                            "load_balancers.#": "1",
+                            "load_balancers.2127366875": "wip-020817",
+                            "max_size": "5",
+                            "metrics_granularity": "1Minute",
+                            "min_size": "2",
+                            "name": "tf-asg-0043359e735d22f1ec9d16e1e1",
+                            "placement_group": "",
+                            "protect_from_scale_in": "false",
+                            "suspended_processes.#": "0",
+                            "tag.#": "1",
+                            "tag.1642424328.key": "Name",
+                            "tag.1642424328.propagate_at_launch": "true",
+                            "tag.1642424328.value": "wip-asg-060817",
+                            "target_group_arns.#": "0",
+                            "termination_policies.#": "0",
+                            "vpc_zone_identifier.#": "1",
+                            "vpc_zone_identifier.0": "",
+                            "wait_for_capacity_timeout": "10m"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_elb.wip-elb": {
+                    "type": "aws_elb",
+                    "depends_on": [
+                        "aws_security_group.elb",
+                        "data.aws_availability_zones.all"
+                    ],
+                    "primary": {
+                        "id": "wip-020817",
+                        "attributes": {
+                            "access_logs.#": "0",
+                            "availability_zones.#": "3",
+                            "availability_zones.1126047633": "eu-central-1a",
+                            "availability_zones.2903539389": "eu-central-1c",
+                            "availability_zones.3658960427": "eu-central-1b",
+                            "connection_draining": "false",
+                            "connection_draining_timeout": "300",
+                            "cross_zone_load_balancing": "true",
+                            "dns_name": "wip-020817-1529799779.eu-central-1.elb.amazonaws.com",
+                            "health_check.#": "1",
+                            "health_check.0.healthy_threshold": "2",
+                            "health_check.0.interval": "30",
+                            "health_check.0.target": "HTTP:9090/",
+                            "health_check.0.timeout": "3",
+                            "health_check.0.unhealthy_threshold": "2",
+                            "id": "wip-020817",
+                            "idle_timeout": "60",
+                            "instances.#": "0",
+                            "internal": "false",
+                            "listener.#": "1",
+                            "listener.3122251624.instance_port": "9090",
+                            "listener.3122251624.instance_protocol": "http",
+                            "listener.3122251624.lb_port": "80",
+                            "listener.3122251624.lb_protocol": "http",
+                            "listener.3122251624.ssl_certificate_id": "",
+                            "name": "wip-020817",
+                            "security_groups.#": "1",
+                            "security_groups.2340918567": "sg-d7af91bc",
+                            "source_security_group": "499604764704/wip-elb",
+                            "source_security_group_id": "sg-d7af91bc",
+                            "subnets.#": "3",
+                            "subnets.1068117202": "subnet-ad92cec4",
+                            "subnets.1463080613": "subnet-f28ba1b8",
+                            "subnets.427661455": "subnet-3d512246",
+                            "tags.%": "0",
+                            "zone_id": "Z215JYRZR1TBD5"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_launch_configuration.wip-020817": {
+                    "type": "aws_launch_configuration",
+                    "depends_on": [
+                        "aws_security_group.instance"
+                    ],
+                    "primary": {
+                        "id": "terraform-0043359e735d22f1ec9d16e1e0",
+                        "attributes": {
+                            "associate_public_ip_address": "false",
+                            "ebs_block_device.#": "0",
+                            "ebs_optimized": "false",
+                            "enable_monitoring": "true",
+                            "ephemeral_block_device.#": "0",
+                            "iam_instance_profile": "",
+                            "id": "terraform-0043359e735d22f1ec9d16e1e0",
+                            "image_id": "ami-1e339e71",
+                            "instance_type": "t2.micro",
+                            "key_name": "",
+                            "name": "terraform-0043359e735d22f1ec9d16e1e0",
+                            "root_block_device.#": "0",
+                            "security_groups.#": "1",
+                            "security_groups.3131992269": "sg-edaa9486",
+                            "spot_price": "",
+                            "user_data": "ed23d5cc82f729c600a81158ba86d81c6a7ae18e",
+                            "vpc_classic_link_id": "",
+                            "vpc_classic_link_security_groups.#": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_s3_bucket.terraform_state": {
+                    "type": "aws_s3_bucket",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "wip-tf-state-080817",
+                        "attributes": {
+                            "acceleration_status": "",
+                            "arn": "arn:aws:s3:::wip-tf-state-080817",
+                            "bucket": "wip-tf-state-080817",
+                            "bucket_domain_name": "wip-tf-state-080817.s3.amazonaws.com",
+                            "hosted_zone_id": "Z21DNDUVLTQW6Q",
+                            "id": "wip-tf-state-080817",
+                            "logging.#": "0",
+                            "region": "eu-central-1",
+                            "request_payer": "BucketOwner",
+                            "tags.%": "0",
+                            "versioning.#": "1",
+                            "versioning.0.enabled": "true",
+                            "versioning.0.mfa_delete": "false",
+                            "website.#": "0"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "aws"
+                },
+                "aws_security_group.elb": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-d7af91bc",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.ipv6_cidr_blocks.#": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-d7af91bc",
+                            "ingress.#": "1",
+                            "ingress.2214680975.cidr_blocks.#": "1",
+                            "ingress.2214680975.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.2214680975.from_port": "80",
+                            "ingress.2214680975.ipv6_cidr_blocks.#": "0",
+                            "ingress.2214680975.protocol": "tcp",
+                            "ingress.2214680975.security_groups.#": "0",
+                            "ingress.2214680975.self": "false",
+                            "ingress.2214680975.to_port": "80",
+                            "name": "wip-elb",
+                            "owner_id": "499604764704",
+                            "tags.%": "0",
+                            "vpc_id": "vpc-63bbfe0a"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group.instance": {
+                    "type": "aws_security_group",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "sg-edaa9486",
+                        "attributes": {
+                            "description": "Managed by Terraform",
+                            "egress.#": "0",
+                            "id": "sg-edaa9486",
+                            "ingress.#": "1",
+                            "ingress.501830036.cidr_blocks.#": "1",
+                            "ingress.501830036.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.501830036.from_port": "9090",
+                            "ingress.501830036.ipv6_cidr_blocks.#": "0",
+                            "ingress.501830036.protocol": "tcp",
+                            "ingress.501830036.security_groups.#": "0",
+                            "ingress.501830036.self": "false",
+                            "ingress.501830036.to_port": "9090",
+                            "name": "wip-020817",
+                            "owner_id": "499604764704",
+                            "tags.%": "0",
+                            "vpc_id": "vpc-63bbfe0a"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "data.aws_availability_zones.all": {
+                    "type": "aws_availability_zones",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "2017-08-13 22:11:11.704045072 +0000 UTC",
+                        "attributes": {
+                            "id": "2017-08-13 22:11:11.704045072 +0000 UTC",
+                            "names.#": "3",
+                            "names.0": "eu-central-1a",
+                            "names.1": "eu-central-1b",
+                            "names.2": "eu-central-1c"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}
