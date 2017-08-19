@@ -12,24 +12,30 @@ data "terraform_remote_state" "dbs" {
   }
 }
 
+data "template_file" "user_data" {
+    template = "${file("../../../modules/services/webcluster/user_data.sh")}"
+
+        vars {
+            server_port = "${var.server_port}"
+            db_address = "${data.terraform_remote_state.dbs.address}"
+            db_port = "${data.terraform_remote_state.dbs.port}"
+        }
+}
+
 resource "aws_launch_configuration" "wip-020817" {
     image_id = "ami-1e339e71"
     instance_type = "t2.micro"
     key_name = "mpopa"
     security_groups = ["${aws_security_group.instance.id}", "${aws_security_group.instance2.id}"]
 
-    user_data = <<EOF
-#!/bin/bash
-echo "!!!" >> index.html
-echo "${data.terraform_remote_state.dbs.address}" >> index.html
-echo "${data.terraform_remote_state.dbs.port}" >> index.html
-nohup busybox httpd -f -p "${var.server_port}" &
-EOF
+    #user_data = "${file("user_data.sh")}"
+    user_data = "${data.template_file.user_data.rendered}"
 
    lifecycle {
         create_before_destroy = true
     }
 }
+
 resource "aws_security_group" "instance" {
     name = "wip-020817"
     ingress {
