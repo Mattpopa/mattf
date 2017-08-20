@@ -3,5 +3,5 @@ provider "aws" {
 }
 module "dbs" {
     source = "../../../modules/dbs/mysql"
-    dbs_pass = "{var.dbs_pass}" 
+    dbs_pass = "{var.dbs_pass}"
 }

@@ -37,7 +37,7 @@ resource "aws_launch_configuration" "wip-020817" {
 }
 
 resource "aws_security_group" "instance" {
-    name = "wip-020817"
+    name = "${var.cluster_name}-wip-020817"
     ingress {
         from_port = "${var.server_port}"
         to_port = "${var.server_port}"
@@ -50,7 +50,7 @@ resource "aws_security_group" "instance" {
 }
 
 resource "aws_security_group" "instance2" {
-    name = "wip-170817"
+    name = "${var.cluster_name}-wip-170817"
     ingress {
         from_port = "${var.server_port2}"
         to_port = "${var.server_port2}"
@@ -74,13 +74,13 @@ resource "aws_autoscaling_group" "wip-020817" {
 
     tag {
         key = "Name"
-        value = "wip-asg-060817"
+        value = "${var.cluster_name}-wip-asg-060817"
         propagate_at_launch = true
     }
 }
 
 resource "aws_elb" "wip-elb" {
-    name = "wip-020817"
+    name = "${var.cluster_name}-wip-020817"
     availability_zones = ["${data.aws_availability_zones.all.names}"]
     security_groups = ["${aws_security_group.elb.id}"]    
     listener {
@@ -99,7 +99,7 @@ resource "aws_elb" "wip-elb" {
 }
 
 resource "aws_security_group" "elb" {
-    name = "wip-elb"
+    name = "${var.cluster_name}-elb"
     ingress {
         from_port = 80
         to_port = 80
@@ -111,6 +111,5 @@ resource "aws_security_group" "elb" {
         to_port = 0
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
-
     }
 }

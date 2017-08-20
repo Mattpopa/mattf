@@ -4,5 +4,6 @@ provider "aws" {
 
 module "webcluster" {
     source = "../../../modules/services/webcluster"
+    cluster_name = "stage"
 }
 

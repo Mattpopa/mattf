@@ -7,3 +7,7 @@ variable "server_port2" {
     default = 22
 }
 
+variable "cluster_name" {
+  description = "webcluster resources name"
+}
+
